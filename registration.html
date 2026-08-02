@@ -90,6 +90,9 @@ input[type="submit"]:hover{
 <label>Phone Number</label>
 <input type="text" id="phone">
 
+<label>Alternate Phone Number</label>
+<input type="text" id="altphone">
+
 <input type="submit" value="Register">
 
 <p id="msg"></p>
@@ -100,15 +103,16 @@ input[type="submit"]:hover{
 
 <script>
 
-document.getElementById("myForm").onsubmit=function(e){
+document.getElementById("myForm").onsubmit = function(e){
 
 e.preventDefault();
 
-var fname=document.getElementById("fname").value;
-var lname=document.getElementById("lname").value;
-var roll=document.getElementById("roll").value;
-var email=document.getElementById("email").value;
-var phone=document.getElementById("phone").value;
+var fname = document.getElementById("fname").value;
+var lname = document.getElementById("lname").value;
+var roll = document.getElementById("roll").value;
+var email = document.getElementById("email").value;
+var phone = document.getElementById("phone").value;
+var altphone = document.getElementById("altphone").value;
 
 if(fname==""){
     alert("Enter First Name");
@@ -137,6 +141,16 @@ if(email.indexOf("@")==-1 || email.indexOf(".")==-1){
 
 if(phone.length!=10 || isNaN(phone)){
     alert("Enter Valid Phone Number");
+    return;
+}
+
+if(altphone!="" && (altphone.length!=10 || isNaN(altphone))){
+    alert("Enter Valid Alternate Phone Number");
+    return;
+}
+
+if(altphone!="" && phone==altphone){
+    alert("Phone Number and Alternate Phone Number should be different");
     return;
 }
 
